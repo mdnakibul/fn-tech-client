@@ -1,0 +1,42 @@
+.section-heading h2{
+    font-size:40pt;
+    font-weight:700;
+    text-align:center;
+    text-transform:uppercase;
+    padding-bottom: 15px;
+}
+
+.section-heading h2::after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    width: 90px;
+    top:100%;
+    left: 45%;
+    background: #5271FF;
+    }
+.title-description p {
+    padding-top: 20px;
+    max-width: 80%;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 18pt;
+    font-weight: 400;
+}
+.service-card{
+    box-shadow: 2px 3px 4px #ddd;
+}
+.service-card:hover{
+    box-shadow: 4px 9px 5px #ddd;
+    transition: all 0.5s cubic-bezier(0.6, 0.24, 0.58, 1);
+    transform: translateY(-10px);
+}
+.service-card h3 {
+    padding: 10px 5px;
+    text-transform: capitalize;
+    margin-top: 10px;
+}
+
+.service-card p {
+    line-height: 1.8em;
+}

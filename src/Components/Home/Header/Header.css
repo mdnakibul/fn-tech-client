@@ -1,0 +1,5 @@
+main{
+    background: linear-gradient(0deg, rgba(252, 249, 250, 0.8), rgba(248, 244, 246, 0.9)), url('../../../images//itservice2.jpg');
+    background-size: cover;
+    background-position: center;
+}
