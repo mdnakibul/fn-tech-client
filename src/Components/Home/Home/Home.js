@@ -1,7 +1,10 @@
 import React from 'react';
+import Contact from '../Contact/Contact';
+import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Navigation from '../Navigation/Navigation';
 import Services from '../Services/Services';
+import Testimonial from '../Testimonial/Testimonial';
 
 const Home = () => {
     return (
@@ -9,6 +12,9 @@ const Home = () => {
             <Navigation></Navigation>
             <Header></Header>
             <Services></Services>
+            <Testimonial></Testimonial>
+            <Contact></Contact>
+            <Footer></Footer>
         </section>
     );
 };
