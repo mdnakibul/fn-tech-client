@@ -1,18 +1,18 @@
 import React from 'react';
-import Overview from '../Overview/Overview';
 import Sidebar from '../Sidebar/Sidebar';
+import WriteReview from '../WriteReview/WriteReview';
 
-const Dashboard = () => {
+const Review = () => {
     return (
-        <section className="dashboard">
+        <section className="review">
             <div className="container-fluid">
                 <div className="row">
-                <Sidebar></Sidebar>
-                <Overview></Overview>
+                    <Sidebar></Sidebar>
+                    <WriteReview></WriteReview>
                 </div>
             </div>
         </section>
     );
 };
 
-export default Dashboard;
+export default Review;

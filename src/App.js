@@ -4,9 +4,12 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import BookAService from './Components/Dashboard/BookAService/BookAService';
 import Dashboard from './Components/Dashboard/Dashboard/Dashboard';
+import Review from './Components/Dashboard/Review/Review';
 import Home from './Components/Home/Home/Home';
 import Login from './Components/Login/Login/Login';
+import NotFound from './Components/NotFound/NotFound';
 export const UserContext = createContext();
 
 function App() {
@@ -21,8 +24,17 @@ function App() {
           <Route path="/login">
             <Login></Login>
           </Route>
-          <Route path="/dashboard">
+          <Route exact path="/dashboard">
             <Dashboard></Dashboard>
+          </Route>
+          <Route path="/dashboard/review">
+            <Review></Review>
+          </Route>
+          <Route path="/dashboard/book/:title">
+            <BookAService></BookAService>
+          </Route>
+          <Route path="*">
+            <NotFound></NotFound>
           </Route>
         </Switch>
       </Router>
