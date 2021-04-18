@@ -1,5 +1,5 @@
 import React from 'react';
-import Overview from '../Overview/Overview';
+import Overview from '../CustomerDashboard/Overview/Overview';
 import Sidebar from '../Sidebar/Sidebar';
 
 const Dashboard = () => {

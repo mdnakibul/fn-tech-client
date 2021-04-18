@@ -4,9 +4,13 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import BookAService from './Components/Dashboard/BookAService/BookAService';
+import AddService from './Components/Dashboard/AdminDashboard/AddService/AddService';
+import AllOrders from './Components/Dashboard/AdminDashboard/AllOrders/AllOrder';
+import MakeAdmin from './Components/Dashboard/AdminDashboard/MakeAdmin/MakeAdmin';
+import ManageServices from './Components/Dashboard/AdminDashboard/ManageServices/ManageServices';
+import BookAService from './Components/Dashboard/CustomerDashboard/BookAService/BookAService';
+import Review from './Components/Dashboard/CustomerDashboard/Review/Review';
 import Dashboard from './Components/Dashboard/Dashboard/Dashboard';
-import Review from './Components/Dashboard/Review/Review';
 import Home from './Components/Home/Home/Home';
 import Login from './Components/Login/Login/Login';
 import NotFound from './Components/NotFound/NotFound';
@@ -32,6 +36,21 @@ function App() {
           </Route>
           <Route path="/dashboard/book/:title">
             <BookAService></BookAService>
+          </Route> 
+          <Route path="/dashboard/book">
+            <BookAService></BookAService>
+          </Route>
+          <Route path="/dashboard/makeAdmin">
+            <MakeAdmin></MakeAdmin>
+          </Route>
+          <Route path="/dashboard/addService">
+            <AddService></AddService>
+          </Route>
+          <Route path="/dashboard/allOrders">
+            <AllOrders></AllOrders>
+          </Route>
+          <Route path="/dashboard/manageServices">
+            <ManageServices></ManageServices>
           </Route>
           <Route path="*">
             <NotFound></NotFound>

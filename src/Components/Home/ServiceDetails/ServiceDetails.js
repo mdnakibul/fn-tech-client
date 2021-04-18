@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 
 const ServiceDetails = ({service}) => {
-    const {title,description,image} = service;
+    const {title,description,image,price} = service;
     const history = useHistory()
     const toBooking = ()=>{
         history.push('/dashboard/book/'+title)
@@ -14,6 +14,7 @@ const ServiceDetails = ({service}) => {
                 <img src={image} alt={title} className="img-fluid" style={{minHeight : '235px'}}/>
                 <h3>{title}</h3>
                 <p>{description}</p>
+                <p>Starting At ${price}</p>
                 <button className="btn btn-primary" onClick={toBooking}>Buy Now</button>
             </div>
         </div>

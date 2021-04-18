@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router';
+import Sidebar from '../../Sidebar/Sidebar';
 import Book from '../Book/Book';
-import Sidebar from '../Sidebar/Sidebar';
 
 const BookAService = () => {
     const {title} = useParams();

@@ -65,7 +65,7 @@ const Sidebar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/dashboard/manageService" className="text-white" >
+                            <Link to="/dashboard/manageServices" className="text-white" >
                                 <FontAwesomeIcon icon={faThLarge} /> <span>Manage Services</span>
                             </Link>
                         </li>

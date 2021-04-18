@@ -11,18 +11,21 @@ const Services = () => {
             id : 1,
             title : 'web development',
             description : "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium facere ipsum, perspiciatis voluptas repellendus nesciunt repudiandae magnam omnis error eos?",
+            price : 300,
             image : webdev
         },
         {
             id : 2,
             title : 'android development',
             description : "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium facere ipsum, perspiciatis voluptas repellendus nesciunt repudiandae magnam omnis error eos?",
+            price : 300,
             image : androiddev
         },
         {
             id : 3,
             title : 'iOS development',
             description : "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium facere ipsum, perspiciatis voluptas repellendus nesciunt repudiandae magnam omnis error eos?",
+            price : 500,
             image : iosdev
         }
     ]
