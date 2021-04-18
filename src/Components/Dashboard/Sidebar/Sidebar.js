@@ -51,7 +51,7 @@ const Sidebar = () => {
                     {isAdmin && <div>
                         <li>
                             <Link to="/dashboard/allOrders" className="text-white">
-                                <FontAwesomeIcon icon={faCalendar} /> <span>Order List</span>
+                                <FontAwesomeIcon icon={faCalendar} /> <span>All Order</span>
                             </Link>
                         </li>
                         <li>
