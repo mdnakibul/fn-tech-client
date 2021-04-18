@@ -34,7 +34,7 @@ function App() {
           <Route path="/dashboard/review">
             <Review></Review>
           </Route>
-          <Route path="/dashboard/book/:title">
+          <Route path="/dashboard/book/:id">
             <BookAService></BookAService>
           </Route> 
           <Route path="/dashboard/book">

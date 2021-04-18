@@ -4,31 +4,32 @@ import { UserContext } from '../../../../App';
 import ProcessPayment from '../ProcessPayment/ProcessPayment';
 import './Book.css';
 
-const Book = ({serviceTitle}) => {
+const Book = ({ serviceDetails }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [loggedInUser] = useContext(UserContext);
     const [shipmentData, setShipmentData] = useState(null)
+    const { title, price } = serviceDetails;
+
     const onSubmit = data => {
         setShipmentData(data);
     };
 
     const handlePaymentSuccess = (paymentId) => {
-        const orderInfo = { ...loggedInUser, product: shipmentData.service, address: shipmentData, paymentId, orderTime: new Date() }
-        // fetch('https://murmuring-falls-44571.herokuapp.com/addOrder', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(orderInfo)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         if (data) {
-        //             alert('Order placed successfully')
-        //             processOrder()
-        //         }
-        //     })
+        const orderInfo = { ...loggedInUser, product: shipmentData.service, price : price, status:'pending', address: shipmentData, paymentId, orderTime: new Date() }
+        fetch('http://localhost:5000/addOrder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    alert('Order placed successfully')
+                }
+            })
     };
     return (
         <div className="book col-md-10" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
@@ -51,7 +52,7 @@ const Book = ({serviceTitle}) => {
                         {/* errors will return when field validation fails  */}
                         {errors.address && <span>Address is required</span>}
 
-                        <input name="service" type="text" className="form-control py-3 mb-3" defaultValue={serviceTitle} {...register("service", { required: true })} placeholder="SErvice Name" />
+                        <input name="service" type="text" className="form-control py-3 mb-3" defaultValue={title} {...register("service", { required: true })} placeholder="SErvice Name" />
                         {/* errors will return when field validation fails  */}
                         {errors.service && <span>Service name is required</span>}
 
@@ -64,7 +65,7 @@ const Book = ({serviceTitle}) => {
                 </div>
                 <div className="col-md-6" style={{ display: shipmentData ? 'block' : 'none' }}>
                     <ProcessPayment handlePayment={handlePaymentSuccess}></ProcessPayment>
-                    <p>You payment amouont is $100</p>
+                    <p>You payment amouont is ${price}</p>
                 </div>
             </div>
         </div>

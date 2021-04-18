@@ -2,10 +2,10 @@ import React from 'react';
 import { useHistory } from 'react-router';
 
 const ServiceDetails = ({service}) => {
-    const {title,description,image,price} = service;
+    const {_id,title,description,image,price} = service;
     const history = useHistory()
     const toBooking = ()=>{
-        history.push('/dashboard/book/'+title)
+        history.push('/dashboard/book/'+_id)
         console.log('to booking');
     }
     return (

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { Link } from 'react-router-dom';
 
 const CheckoutForm = (props) => {
   const stripe = useStripe();
@@ -53,7 +54,7 @@ const CheckoutForm = (props) => {
         paymentError && <p className="text-danger">{paymentError}</p>
       }
       {
-        paymentSuccess && <p className="text-success">Your Payment is successfull</p>
+        paymentSuccess && <p className="text-success">Your Payment is successfull <Link to='/'>Go to Home</Link> </p> 
       }
     </div>
   );
