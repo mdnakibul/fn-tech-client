@@ -6,6 +6,18 @@ const MakeAdmin = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleMakeAdmin = (data) => {
         console.log(data);
+
+        fetch('http://localhost:5000/makeAnAdmin',{
+            method : 'POST',
+            headers : {'Content-Type' : 'application/json'},
+            body : JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(success => {
+            if(success){
+                alert('Admin Role Updated Successfully');
+            }
+        })
     }
     return (
         <section className="make-admin">
@@ -25,7 +37,7 @@ const MakeAdmin = () => {
                                 {errors.email && <span>This field is required</span>}
                             </div>
                             <div className="form-group">
-                                <input type="submit" className="btn btn-primary" />
+                                <input type="submit" className="btn btn-primary mb-3 ml-3" />
                             </div>
                         </form>
                     </div>
