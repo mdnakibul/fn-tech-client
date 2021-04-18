@@ -1,34 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Services.css'
-import webdev from '../../../images/webdev.jpg'
-import androiddev from '../../../images/androidDev.jpg'
-import iosdev from '../../../images/ios-app.png'
 import ServiceDetails from '../ServiceDetails/ServiceDetails';
 import SectionTitle from '../SectionTitle/SectionTitle';
 const Services = () => {
-    const serviceData = [
-        {
-            id : 1,
-            title : 'web development',
-            description : "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium facere ipsum, perspiciatis voluptas repellendus nesciunt repudiandae magnam omnis error eos?",
-            price : 300,
-            image : webdev
-        },
-        {
-            id : 2,
-            title : 'android development',
-            description : "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium facere ipsum, perspiciatis voluptas repellendus nesciunt repudiandae magnam omnis error eos?",
-            price : 300,
-            image : androiddev
-        },
-        {
-            id : 3,
-            title : 'iOS development',
-            description : "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium facere ipsum, perspiciatis voluptas repellendus nesciunt repudiandae magnam omnis error eos?",
-            price : 500,
-            image : iosdev
-        }
-    ]
+
+    const [services,setServices] = useState([])
+
+    useEffect( () => {
+        fetch('http://localhost:5000/services')
+        .then(res => res.json())
+        .then(data => setServices(data))
+    }, [])
+
     const sectionTitle = 'our services';
     const sectionDescription = 'We are working with both individuals and businesses from all over the globe to create awesome websites and applications';
     return (
@@ -37,7 +20,7 @@ const Services = () => {
             <div className="container mt-5">
                 <div className="row">
                     {
-                        serviceData.map(service => <ServiceDetails service={service} key={service.id}></ServiceDetails>)
+                        services.map(service => <ServiceDetails service={service} key={service._id}></ServiceDetails>)
                     }
                 </div>
             </div>

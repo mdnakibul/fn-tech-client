@@ -1,31 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../../Sidebar/Sidebar';
 
 const AddService = () => {
+
+    const [info, setInfo] = useState({});
+    const [file, setFile] = useState(null);
+
+    const handleBlur = e => {
+        const newInfo = { ...info };
+        newInfo[e.target.name] = e.target.value;
+        setInfo(newInfo);
+    }
+
+    const handleFileChange = (e) => {
+        const newFile = e.target.files[0];
+        setFile(newFile);
+        console.log(e.target.files[0]);
+    }
+
+    const handleServiceSubmit = () => {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('title', info.title);
+        formData.append('description', info.description);
+        formData.append('price', info.price);
+        console.log(formData);
+
+        fetch('http://localhost:5000/addService', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+            .catch(error => {
+                console.log(error);
+                alert(error.message)
+            })
+    }
+
     return (
         <section className="add-service">
             <div className="container-fluid">
                 <div className="row">
                     <Sidebar></Sidebar>
                     <div className="col-md-10 mt-5">
-                        <form>
-                            <div class="form-group">
-                                <label for="name">Service Name</label>
-                                <input type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Service Name" />
+                        <form onSubmit={handleServiceSubmit}>
+                            <div className="form-group">
+                                <label htmlFor="name">Service Name</label>
+                                <input onBlur={handleBlur} type="text" className="form-control" name="title" id="name" aria-describedby="nameHelp" placeholder="Service Name" />
                             </div>
-                            <div class="form-group">
-                                <label for="description">Service Description</label>
-                                <input type="text" class="form-control" style={{minHeight : '100px'}} id="exampleInputPassword1" placeholder="Service Description" />
+                            <div className="form-group">
+                                <label htmlFor="description">Service Description</label>
+                                <input onBlur={handleBlur} type="text" className="form-control" name="description" style={{ minHeight: '100px' }} id="exampleInputPassword1" placeholder="Service Description" />
                             </div>
-                            <div class="form-group">
-                                <label for="price">Service Price</label>
-                                <input type="number" class="form-control" id="price" placeholder="Service Price" />
+                            <div className="form-group">
+                                <label htmlFor="price">Service Price</label>
+                                <input onBlur={handleBlur} type="number" name="price" className="form-control" id="price" placeholder="Service Price" />
                             </div>
-                            <div class="form-group">
-                                <label for="photo">Upload a Photo</label>
-                                <input type="file" class="form-control-file" id="photo" />
+                            <div className="form-group">
+                                <label htmlFor="photo">Upload a Photo</label>
+                                <input onChange={handleFileChange} type="file" name="file" className="form-control-file" id="photo" />
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" className="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>

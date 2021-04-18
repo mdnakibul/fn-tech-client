@@ -11,7 +11,7 @@ const ServiceDetails = ({service}) => {
     return (
         <div className="col-md-4">
             <div className="service-card text-center p-4">
-                <img src={image} alt={title} className="img-fluid" style={{minHeight : '235px'}}/>
+                <img src={`data:image/png;base64,${image.img}`} alt={title} className="img-fluid" style={{minHeight : '235px'}}/>
                 <h3>{title}</h3>
                 <p>{description}</p>
                 <p>Starting At ${price}</p>
