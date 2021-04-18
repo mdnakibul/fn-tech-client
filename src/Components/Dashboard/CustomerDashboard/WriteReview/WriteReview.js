@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const WriteReview = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-
     const onSubmit = data => {
         console.log(data);
+
+        fetch('http://localhost:5000/addReview',{
+            method : 'POST',
+            headers : {'Content-Type' : 'application/json'},
+            body : JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(success => {
+            if(success){
+                alert('Review Submitted Successfully');
+            }
+        })
     };
 
     return (
@@ -21,13 +32,13 @@ const WriteReview = () => {
                         <input name="name" type="text" className="form-control py-3 mb-3" {...register("name", { required: true })} placeholder="Enter Your Name" />
                         {errors.name && <span>Name is required</span>}
 
-                        <input name="designation" type="text" className="form-control py-3 mb-3" {...register("address", { required: true })} placeholder="Enter Your Company Name , Designation" />
+                        <input name="designation" type="text" className="form-control py-3 mb-3" {...register("designation", { required: true })} placeholder="Enter Your Company Name , Designation" />
                         {/* errors will return when field validation fails  */}
-                        {errors.address && <span>This field is required</span>}
+                        {errors.designation && <span>This field is required</span>}
 
-                        <input name="message" type="text" style={{minHeight : '100px'}} className="form-control py-3 mb-3" {...register("message", { required: true })} placeholder="Write Your Opinion" />
+                        <input name="quote" type="text" style={{minHeight : '100px'}} className="form-control py-3 mb-3" {...register("quote", { required: true })} placeholder="Write Your Opinion" />
                         {/* errors will return when field validation fails  */}
-                        {errors.message && <span>This field is required</span>}
+                        {errors.quote && <span>This field is required</span>}
 
                         <input type="submit" className="btn btn-primary" />
                     </form>

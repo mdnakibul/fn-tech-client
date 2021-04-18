@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SectionTitle from '../SectionTitle/SectionTitle';
 import TestimonialDetails from '../TestimonialDetails/TestimonialDetails';
 import testimonial1 from '../../../images/testimonial1.jpg'
@@ -28,13 +28,22 @@ const Testimonial = () => {
             image: testimonial3
         },
     ]
+
+    const [reviews,setReviews] = useState([])
+
+    useEffect( () => {
+        fetch('http://localhost:5000/reviews')
+        .then(res => res.json())
+        .then(data => setReviews(data))
+    }, [])
+
     return (
         <section className="testimonial mt-5">
             <SectionTitle title={title} titleDescription={titleDescription}></SectionTitle>
             <div className="container mt-5">
                 <div className="row">
                     {
-                        testimonialData.map(testimonial => <TestimonialDetails testimonial={testimonial} key={testimonial.name}></TestimonialDetails>)
+                        reviews.map(review => <TestimonialDetails review={review} key={review._id}></TestimonialDetails>)
                     }
                 </div>
             </div>
