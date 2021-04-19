@@ -7,7 +7,7 @@ const BookAService = () => {
     const {id} = useParams();
     const [serviceDetails,setServiceDetails] = useState({});
     useEffect(()=>{
-        fetch('http://localhost:5000/service/'+id)
+        fetch('https://enigmatic-castle-41503.herokuapp.com/service/'+id)
         .then(res => res.json())
         .then(data => setServiceDetails(data))
     },[])

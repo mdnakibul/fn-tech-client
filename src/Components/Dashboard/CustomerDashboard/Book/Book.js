@@ -16,8 +16,8 @@ const Book = ({ serviceDetails }) => {
     };
 
     const handlePaymentSuccess = (paymentId) => {
-        const orderInfo = { ...loggedInUser, product: shipmentData.service, price : price, status:'pending', address: shipmentData, paymentId, orderTime: new Date() }
-        fetch('http://localhost:5000/addOrder', {
+        const orderInfo = { ...loggedInUser, product: shipmentData.service, price : price, status:'pending', address: shipmentData, payId:paymentId, orderTime: new Date() }
+        fetch('https://enigmatic-castle-41503.herokuapp.com/addOrder', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ const Book = ({ serviceDetails }) => {
         <div className="book col-md-10" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
             <div className="book-navigation d-flex justify-content-between px-3 py-3">
                 <h4 className="text-uppercase pl-2">book</h4>
-                <h4 className="pr-2">Your Name</h4>
+                <h4 className="pr-2">{loggedInUser.displayName}</h4>
             </div>
             <div className="row booking-form mt-5">
                 <div style={{ display: shipmentData ? 'none' : 'block' }} className="col-md-6">

@@ -9,10 +9,12 @@ import AllOrders from './Components/Dashboard/AdminDashboard/AllOrders/AllOrder'
 import MakeAdmin from './Components/Dashboard/AdminDashboard/MakeAdmin/MakeAdmin';
 import ManageServices from './Components/Dashboard/AdminDashboard/ManageServices/ManageServices';
 import BookAService from './Components/Dashboard/CustomerDashboard/BookAService/BookAService';
+import OrderList from './Components/Dashboard/CustomerDashboard/OrderList/OrderList';
 import Review from './Components/Dashboard/CustomerDashboard/Review/Review';
 import Dashboard from './Components/Dashboard/Dashboard/Dashboard';
 import Home from './Components/Home/Home/Home';
 import Login from './Components/Login/Login/Login';
+import PrivateRoute from './Components/Login/PrivateRoute/PrivateRoute';
 import NotFound from './Components/NotFound/NotFound';
 export const UserContext = createContext();
 
@@ -28,30 +30,33 @@ function App() {
           <Route path="/login">
             <Login></Login>
           </Route>
-          <Route exact path="/dashboard">
+          <PrivateRoute exact path="/dashboard">
             <Dashboard></Dashboard>
-          </Route>
-          <Route path="/dashboard/review">
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/review">
             <Review></Review>
-          </Route>
-          <Route path="/dashboard/book/:id">
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/book/:id">
             <BookAService></BookAService>
-          </Route> 
-          <Route path="/dashboard/book">
+          </PrivateRoute> 
+          <PrivateRoute path="/dashboard/book">
             <BookAService></BookAService>
-          </Route>
-          <Route path="/dashboard/makeAdmin">
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/order-list">
+            <OrderList></OrderList>
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/makeAdmin">
             <MakeAdmin></MakeAdmin>
-          </Route>
-          <Route path="/dashboard/addService">
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/addService">
             <AddService></AddService>
-          </Route>
-          <Route path="/dashboard/allOrders">
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/allOrders">
             <AllOrders></AllOrders>
-          </Route>
-          <Route path="/dashboard/manageServices">
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/manageServices">
             <ManageServices></ManageServices>
-          </Route>
+          </PrivateRoute>
           <Route path="*">
             <NotFound></NotFound>
           </Route>

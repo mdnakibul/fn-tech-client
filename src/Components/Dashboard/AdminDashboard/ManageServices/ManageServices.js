@@ -1,14 +1,16 @@
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../../../App';
 import Sidebar from '../../Sidebar/Sidebar';
 
 const ManageServices = () => {
 
-    const [services, setServices] = useState([])
+    const [services, setServices] = useState([]);
+    const[loggedInUser,setLoggedInUser] = useContext(UserContext);
 
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://enigmatic-castle-41503.herokuapp.com/services')
             .then(res => res.json())
             .then(data => setServices(data))
             .catch(error => alert(error.message))
@@ -18,7 +20,7 @@ const deleteService = (event,id)=>{
     const deleteNode = event.target.parentNode.parentNode.parentNode.parentNode.parentNode;
     console.log('Deleting ', id);
     console.log(deleteNode);
-            fetch(`http://localhost:5000/deleteService/${id}`, {
+            fetch(`https://enigmatic-castle-41503.herokuapp.com/deleteService/${id}`, {
                 method: 'DELETE'
             })
                 .then(response => response.json())
@@ -38,7 +40,7 @@ const deleteService = (event,id)=>{
                     <div className="col-md-10" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                         <div className="book-navigation d-flex justify-content-between px-3 py-3">
                             <h4 className="text-uppercase pl-2">Manage Services</h4>
-                            <h4 className="pr-2">Your Name</h4>
+                            <h4 className="pr-2">{loggedInUser.displayName}</h4>
                         </div>
                         <table className="table">
                             <thead>

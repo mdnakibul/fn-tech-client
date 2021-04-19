@@ -36,9 +36,8 @@ const CheckoutForm = (props) => {
       console.log('[PaymentMethod]', paymentMethod);
       setPaymentSuccess(paymentMethod.id);
       setPaymentError(null);
-      console.log(props);
-      console.log(props.handlePayment);
-      props.handlePayment()
+      console.log(paymentMethod.id);
+      props.handlePayment(paymentMethod.id)
     }
   };
 

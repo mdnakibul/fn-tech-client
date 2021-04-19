@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,17 +7,17 @@ import { UserContext } from '../../../App';
 
 const Sidebar = () => {
     const [loggedInUser] = useContext(UserContext);
-    const [isAdmin, setIsAdmin] = useState(true);
+    const [isAdmin, setIsAdmin] = useState(false);
 
-    // useEffect(() => {
-    //     fetch('https://sleepy-mountain-85887.herokuapp.com/isDoctor', {
-    //         method: 'POST',
-    //         headers: { 'content-type': 'application/json' },
-    //         body: JSON.stringify({ email: loggedInUser.email })
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => setIsAdmin(data));
-    // }, [])
+    useEffect(() => {
+        fetch('https://enigmatic-castle-41503.herokuapp.com/isAdmin', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ email: loggedInUser.email })
+        })
+            .then(res => res.json())
+            .then(data => setIsAdmin(data));
+    }, [])
 
     return (
         <div className="col-md-2" style={{ height: "100vh",paddingLeft:'0px' }}>
@@ -39,8 +39,8 @@ const Sidebar = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="dashboard/booking-list" className="text-white">
-                            <FontAwesomeIcon icon={faList} /> <span>Booking List</span>
+                        <Link to="/dashboard/order-list" className="text-white">
+                            <FontAwesomeIcon icon={faList} /> <span>Your Orders </span>
                         </Link>
                     </li>
                     <li>

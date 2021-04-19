@@ -1,17 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../../../App';
 import Sidebar from '../../Sidebar/Sidebar';
 
 const AllOrders = () => {
     const [allOrder, setAllOrder] = useState([]);
+    const [loggedInUser,setLoggedInUser] = useContext(UserContext)
     useEffect(() => {
-        fetch('http://localhost:5000/allOrder')
+        fetch('https://enigmatic-castle-41503.herokuapp.com/allOrder')
             .then(res => res.json())
             .then(data => setAllOrder(data))
     }, [])
 
     const handleStatusChange = (event,id)=>{
-        console.log('Status changed of', id);
-        console.log(event.target.value);
+        const modifiedValue = event.target.value;
+
+        fetch(`https://enigmatic-castle-41503.herokuapp.com/update/${id}`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'PATCH',
+            body: JSON.stringify({modifiedValue})
+        })
+            .then(result => {
+                if(result){
+                    alert('Data Updated Successfully')
+                }
+            })
     }
     return (
         <section className="all-orders">
@@ -21,7 +36,7 @@ const AllOrders = () => {
                     <div className="col-md-10" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                         <div className="book-navigation d-flex justify-content-between px-3 py-3">
                             <h4 className="text-uppercase pl-2">book</h4>
-                            <h4 className="pr-2">Your Name</h4>
+                            <h4 className="pr-2">{loggedInUser.displayName}</h4>
                         </div>
                         <table className="table mt-5" style={{ maxWidth: '98%' }}>
                             <thead>
@@ -46,20 +61,20 @@ const AllOrders = () => {
                                                 {
                                                     order.status === 'pending' && <select className="custom-select" name="status" id="status" defaultValue={order.status} onChange={(event)=>handleStatusChange(event,order._id)}>
                                                         <option value={order.status} >{order.status}</option>
-                                                        <option value='processng'>processng</option>
+                                                        <option value='processng'>processing</option>
                                                         <option value='done'>done</option>
                                                     </select>
                                                 }
                                                 {
                                                     order.status === 'processing' && <select className="custom-select" name="status" id="status" defaultValue={order.status} onChange={(event)=>handleStatusChange(event,order._id)}>
-                                                        <option value={order.status} selected>{order.status}</option>
+                                                        <option value={order.status} >{order.status}</option>
                                                         <option value='pending'>Pending</option>
                                                         <option value='done'>Done</option>
                                                     </select>
                                                 }
                                                 {
                                                     order.status === 'done' && <select className="custom-select" name="status" id="status" defaultValue={order.status} onChange={(event)=>handleStatusChange(event,order._id)}>
-                                                        <option value={order.status} selected>{order.status}</option>
+                                                        <option value={order.status} >{order.status}</option>
                                                         <option value='pending'>Pending</option>
                                                         <option value='processing'>Processing</option>
                                                     </select>

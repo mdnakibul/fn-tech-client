@@ -26,7 +26,7 @@ const AddService = () => {
         formData.append('price', info.price);
         console.log(formData);
 
-        fetch('http://localhost:5000/addService', {
+        fetch('https://enigmatic-castle-41503.herokuapp.com/addService', {
             method: 'POST',
             body: formData
         })
