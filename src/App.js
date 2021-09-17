@@ -16,6 +16,7 @@ import Home from './Components/Home/Home/Home';
 import Login from './Components/Login/Login/Login';
 import PrivateRoute from './Components/Login/PrivateRoute/PrivateRoute';
 import NotFound from './Components/NotFound/NotFound';
+import './App.css'
 export const UserContext = createContext();
 
 function App() {
