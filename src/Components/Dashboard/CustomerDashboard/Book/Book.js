@@ -16,8 +16,8 @@ const Book = ({ serviceDetails }) => {
     };
 
     const handlePaymentSuccess = (paymentId) => {
-        const orderInfo = { ...loggedInUser, product: shipmentData.service, price : price, status:'pending', address: shipmentData, payId:paymentId, orderTime: new Date() }
-        fetch('https://enigmatic-castle-41503.herokuapp.com/addOrder', {
+        const orderInfo = { ...loggedInUser, product: shipmentData.service, price: price, status: 'pending', address: shipmentData, payId: paymentId, orderTime: new Date() }
+        fetch('https://fn-tech-server-imjte4rrt-mdnakibul.vercel.app/addOrder', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

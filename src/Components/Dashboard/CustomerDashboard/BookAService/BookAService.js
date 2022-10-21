@@ -4,19 +4,19 @@ import Sidebar from '../../Sidebar/Sidebar';
 import Book from '../Book/Book';
 
 const BookAService = () => {
-    const {id} = useParams();
-    const [serviceDetails,setServiceDetails] = useState({});
-    useEffect(()=>{
-        fetch('https://enigmatic-castle-41503.herokuapp.com/service/'+id)
-        .then(res => res.json())
-        .then(data => setServiceDetails(data))
-    },[])
+    const { id } = useParams();
+    const [serviceDetails, setServiceDetails] = useState({});
+    useEffect(() => {
+        fetch('https://fn-tech-server-imjte4rrt-mdnakibul.vercel.app/service/' + id)
+            .then(res => res.json())
+            .then(data => setServiceDetails(data))
+    }, [])
     return (
         <section className="make-booking">
             <div className="container-fluid">
-            <div className="row">
-                <Sidebar></Sidebar>
-                <Book serviceDetails = {serviceDetails}></Book>
+                <div className="row">
+                    <Sidebar></Sidebar>
+                    <Book serviceDetails={serviceDetails}></Book>
                 </div>
             </div>
         </section>

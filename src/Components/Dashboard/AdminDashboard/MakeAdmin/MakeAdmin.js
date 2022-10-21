@@ -5,21 +5,21 @@ import Sidebar from '../../Sidebar/Sidebar';
 
 const MakeAdmin = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [loggedInUser,setLoggedInUser] = useContext(UserContext)
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
     const handleMakeAdmin = (data) => {
         console.log(data);
 
-        fetch('https://enigmatic-castle-41503.herokuapp.com/makeAnAdmin',{
-            method : 'POST',
-            headers : {'Content-Type' : 'application/json'},
-            body : JSON.stringify(data)
+        fetch('https://fn-tech-server-imjte4rrt-mdnakibul.vercel.app/makeAnAdmin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
         })
-        .then(res => res.json())
-        .then(success => {
-            if(success){
-                alert('Admin Role Updated Successfully');
-            }
-        })
+            .then(res => res.json())
+            .then(success => {
+                if (success) {
+                    alert('Admin Role Updated Successfully');
+                }
+            })
     }
     return (
         <section className="make-admin">

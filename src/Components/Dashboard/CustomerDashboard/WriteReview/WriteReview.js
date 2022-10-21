@@ -4,21 +4,21 @@ import { UserContext } from '../../../../App';
 
 const WriteReview = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const[loggedInUser,setLoggedInUser] = useContext(UserContext)
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
     const onSubmit = data => {
         console.log(data);
 
-        fetch('https://enigmatic-castle-41503.herokuapp.com/addReview',{
-            method : 'POST',
-            headers : {'Content-Type' : 'application/json'},
-            body : JSON.stringify(data)
+        fetch('https://fn-tech-server-imjte4rrt-mdnakibul.vercel.app/addReview', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
         })
-        .then(res => res.json())
-        .then(success => {
-            if(success){
-                alert('Review Submitted Successfully');
-            }
-        })
+            .then(res => res.json())
+            .then(success => {
+                if (success) {
+                    alert('Review Submitted Successfully');
+                }
+            })
     };
 
     return (
@@ -38,7 +38,7 @@ const WriteReview = () => {
                         {/* errors will return when field validation fails  */}
                         {errors.designation && <span>This field is required</span>}
 
-                        <input name="quote" type="text" style={{minHeight : '100px'}} className="form-control py-3 mb-3" {...register("quote", { required: true })} placeholder="Write Your Opinion" />
+                        <input name="quote" type="text" style={{ minHeight: '100px' }} className="form-control py-3 mb-3" {...register("quote", { required: true })} placeholder="Write Your Opinion" />
                         {/* errors will return when field validation fails  */}
                         {errors.quote && <span>This field is required</span>}
 

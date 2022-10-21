@@ -4,12 +4,12 @@ import ServiceDetails from '../ServiceDetails/ServiceDetails';
 import SectionTitle from '../SectionTitle/SectionTitle';
 const Services = () => {
 
-    const [services,setServices] = useState([])
+    const [services, setServices] = useState([])
 
-    useEffect( () => {
-        fetch('https://enigmatic-castle-41503.herokuapp.com/services')
-        .then(res => res.json())
-        .then(data => setServices(data))
+    useEffect(() => {
+        fetch('https://fn-tech-server-imjte4rrt-mdnakibul.vercel.app/services')
+            .then(res => res.json())
+            .then(data => setServices(data))
     }, [])
 
     const sectionTitle = 'our services';

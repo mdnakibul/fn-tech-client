@@ -7,30 +7,30 @@ import Sidebar from '../../Sidebar/Sidebar';
 const ManageServices = () => {
 
     const [services, setServices] = useState([]);
-    const[loggedInUser,setLoggedInUser] = useContext(UserContext);
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
     useEffect(() => {
-        fetch('https://enigmatic-castle-41503.herokuapp.com/services')
+        fetch('https://fn-tech-server-imjte4rrt-mdnakibul.vercel.app/services')
             .then(res => res.json())
             .then(data => setServices(data))
             .catch(error => alert(error.message))
     }, [])
 
-const deleteService = (event,id)=>{
-    const deleteNode = event.target.parentNode.parentNode.parentNode.parentNode.parentNode;
-    console.log('Deleting ', id);
-    console.log(deleteNode);
-            fetch(`https://enigmatic-castle-41503.herokuapp.com/deleteService/${id}`, {
-                method: 'DELETE'
+    const deleteService = (event, id) => {
+        const deleteNode = event.target.parentNode.parentNode.parentNode.parentNode.parentNode;
+        console.log('Deleting ', id);
+        console.log(deleteNode);
+        fetch(`https://fn-tech-server-imjte4rrt-mdnakibul.vercel.app/deleteService/${id}`, {
+            method: 'DELETE'
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    alert('Delete Successful')
+                    deleteNode.style.display = "none"
+                }
             })
-                .then(response => response.json())
-                .then(data => {
-                    if(data){
-                        alert('Delete Successful')
-                        deleteNode.style.display = "none"
-                    }
-                })
-}
+    }
 
     return (
         <section className="manage-services">
@@ -62,10 +62,10 @@ const deleteService = (event,id)=>{
                                             <td>
                                                 <div className="btn-group" role="group" aria-label="Basic example">
                                                     <button type="button" className="btn bg-white">
-                                                    <FontAwesomeIcon icon={faEdit} color="green" />
+                                                        <FontAwesomeIcon icon={faEdit} color="green" />
                                                     </button>
-                                                    <button type="button" className="btn bg-white" onClick={(event)=>deleteService(event,service._id)}>
-                                                    <FontAwesomeIcon icon={faTrashAlt} color="red" />
+                                                    <button type="button" className="btn bg-white" onClick={(event) => deleteService(event, service._id)}>
+                                                        <FontAwesomeIcon icon={faTrashAlt} color="red" />
                                                     </button>
                                                 </div>
                                             </td>

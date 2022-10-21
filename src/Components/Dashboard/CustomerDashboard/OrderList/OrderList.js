@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../../../App';
 import Sidebar from '../../Sidebar/Sidebar';
 const OrderList = () => {
-    const [loggedInUser,setLoggedInUser] = useContext(UserContext)
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
     const email = 'tuhinmate@gmail.com';
     const [orders, setOrders] = useState([])
     useEffect(() => {
-        fetch('https://enigmatic-castle-41503.herokuapp.com/order?email=' + loggedInUser.email)
+        fetch('https://fn-tech-server-imjte4rrt-mdnakibul.vercel.app/order?email=' + loggedInUser.email)
             .then(res => res.json())
             .then(data => setOrders(data))
         console.log(orders);
@@ -15,7 +15,7 @@ const OrderList = () => {
         <section className="order-list">
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-md-2" style={{paddingLeft : '0px'}}>
+                    <div className="col-md-2" style={{ paddingLeft: '0px' }}>
                         <Sidebar></Sidebar>
                     </div>
                     <div className="col-md-10" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
@@ -34,12 +34,12 @@ const OrderList = () => {
                             </thead>
                             <tbody>
                                 {orders.map(order => {
-                                   return (<tr key={order._id}>
-                                       <td>{order.address.email}</td>
-                                       <td>{order.product}</td>
-                                       <td>{order.price}</td>
-                                       <td>{order.status}</td>
-                                   </tr>);
+                                    return (<tr key={order._id}>
+                                        <td>{order.address.email}</td>
+                                        <td>{order.product}</td>
+                                        <td>{order.price}</td>
+                                        <td>{order.status}</td>
+                                    </tr>);
                                 })}
                             </tbody>
                         </table>

@@ -10,7 +10,7 @@ const Sidebar = () => {
     const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
-        fetch('https://enigmatic-castle-41503.herokuapp.com/isAdmin', {
+        fetch('https://fn-tech-server-imjte4rrt-mdnakibul.vercel.app/isAdmin', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ email: loggedInUser.email })
@@ -20,8 +20,8 @@ const Sidebar = () => {
     }, [])
 
     return (
-        <div className="col-md-2" style={{ height: "100vh",paddingLeft:'0px' }}>
-            <div className="sidebar d-flex flex-column justify-content-between py-5 px-4" style={{ height: "100vh", width:'16%'}}>
+        <div className="col-md-2" style={{ height: "100vh", paddingLeft: '0px' }}>
+            <div className="sidebar d-flex flex-column justify-content-between py-5 px-4" style={{ height: "100vh", width: '16%' }}>
                 <ul className="list-unstyled">
                     <li>
                         <Link to="/" className="text-white">

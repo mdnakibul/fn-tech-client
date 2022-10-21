@@ -29,12 +29,12 @@ const Testimonial = () => {
         },
     ]
 
-    const [reviews,setReviews] = useState([])
+    const [reviews, setReviews] = useState([])
 
-    useEffect( () => {
-        fetch('https://enigmatic-castle-41503.herokuapp.com/reviews')
-        .then(res => res.json())
-        .then(data => setReviews(data))
+    useEffect(() => {
+        fetch('https://fn-tech-server-imjte4rrt-mdnakibul.vercel.app/reviews')
+            .then(res => res.json())
+            .then(data => setReviews(data))
     }, [])
 
     return (
